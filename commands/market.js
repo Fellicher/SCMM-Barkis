@@ -18,11 +18,12 @@ module.exports = {
         .setColor(response.foregroundColour)
         .setTitle(response.name)
         .addFields(
-          {name: 'Current price', value: response.buyNowPrice},
-          {name: 'Average price', value: response.allTimeAverageValue}
+          {name: 'Current price', value: response.currency.prefixText+(Number(response.buyNowPrice)/100).toFixed(2)},
+          {name: 'Average price', value: response.currency.prefixText+(Number(response.allTimeAverageValue)/100).toFixed(2)}
         )
         .setImage(response.iconUrl);
         message.channel.send(embed);
+        console.log(response);
     });
   }
 };
